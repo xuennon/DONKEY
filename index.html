@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hey, I'm on your side 💙</title>
+  <style>
+    :root{
+      --bg1:#f7f9ff; 
+      --bg2:#eef6ff;
+      --card:#ffffff;
+      --text:#1f2544;
+      --muted:#5b628a;
+      --accent:#7c8cff; 
+      --accent2:#ff7aa2;
+      --shadow:0 10px 30px rgba(31,37,68,.12);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:var(--text); background: linear-gradient(135deg,var(--bg1),var(--bg2));}
+
+    .wrap{min-height:100%; display:grid; place-items:center; padding:24px}
+
+    .card{position:relative; width:100%; max-width:720px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+
+    .header{padding:28px 28px 20px; background: radial-gradient(1200px 400px at 10% -20%, rgba(124,140,255,.25), transparent), radial-gradient(800px 280px at 90% -40%, rgba(255,122,162,.18), transparent);}
+    .tag{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; font-size:12px; color:#1f2544; background:#eef2ff; border-radius:999px}
+    .tag .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+
+    h1{margin:14px 0 6px; font-size:28px; letter-spacing:.2px}
+    .subtitle{margin:0; color:var(--muted);}
+
+    .content{padding:24px 28px 30px; display:grid; gap:18px}
+
+    .hug{display:grid; gap:14px; padding:18px; border:1px dashed #d9def5; border-radius:16px; background:#f7f8ff}
+
+    .btn{appearance:none; border:0; border-radius:14px; padding:12px 16px; background:var(--accent); color:white; font-weight:600; cursor:pointer; box-shadow:0 6px 18px rgba(124,140,255,.45); transition:transform .06s ease, filter .2s ease}
+    .btn:active{transform:translateY(1px)}
+    .btn.secondary{background:#ffe6ee; color:#9c3c5d; box-shadow:none}
+
+    .affirm{display:grid; gap:10px}
+    .pill{display:inline-block; padding:8px 12px; border-radius:999px; background:#f1f3ff; color:#3b3f6b; font-size:13px}
+
+    details{border:1px solid #eef0ff; border-radius:14px; padding:12px 14px; background:#fcfdff}
+    details summary{cursor:pointer; font-weight:600; color:#384072}
+    details[open]{background:#f6f8ff}
+
+    .footer{padding:18px 28px 28px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; color:var(--muted); font-size:13px}
+
+    /* Floating hearts */
+    .floaters{pointer-events:none}
+    .heart{position:absolute; width:14px; height:14px; transform:rotate(45deg); background:var(--accent2); opacity:.15; animation: rise 7s linear infinite; border-radius:2px}
+    .heart:before, .heart:after{content:""; position:absolute; width:14px; height:14px; border-radius:50%; background:inherit}
+    .heart:before{left:-7px}
+    .heart:after{top:-7px}
+
+    @keyframes rise{0%{transform:translateY(0) scale(.8) rotate(45deg)}100%{transform:translateY(-140vh) scale(1.1) rotate(45deg)}}
+
+    /* Breathing bubble */
+    .breath{display:grid; place-items:center; gap:8px; text-align:center}
+    .bubble{width:110px; height:110px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #ffe2ec, #ffd1e0); animation: breathe 8s ease-in-out infinite; box-shadow: 0 12px 30px rgba(255,122,162,.25)}
+    @keyframes breathe{0%{transform:scale(.85)} 40%{transform:scale(1.05)} 100%{transform:scale(.85)}}
+
+    .small{font-size:12px; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="floaters" id="floaters"></div>
+      <div class="header">
+        <span class="tag"><span class="dot"></span> A gentle note for you</span>
+        <h1 id="headline">Hey, I’m on your side 💙</h1>
+        <p class="subtitle" id="subtitle">Bad day ≠ bad life. Take a breath — you’re safe with me.</p>
+      </div>
+
+      <div class="content">
+        <p id="intro">
+          Just act blur live longer don't care him.
+          You don’t need to fix everything tonight — it’s okay to rest and I'm always here with you.
+        </p>
+
+        <div class="hug">
+          <div class="breath">
+            <div class="bubble" aria-hidden="true"></div>
+            <div class="small">Inhale 4 • Hold 4 • Exhale 6 — x3 rounds</div>
+          </div>
+          <button class="btn" id="hugBtn">Open a virtual hug 🤍</button>
+          <div id="hugMsg" style="display:none">
+            <p>
+              Wrap this message around you: <strong>You are loved, you are trying, and that’s enough for today.</strong> 
+            </p>
+            <div class="affirm" id="affirmList">
+              <span class="pill">You’re allowed to take space</span>
+              <span class="pill">Your feelings make sense</span>
+              <span class="pill">I believe in you</span>
+              <span class="pill">We’re a team</span>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap">
+              <button class="btn secondary" id="waterBtn">I drank water 💧</button>
+              <button class="btn secondary" id="ateBtn">I ate something 🍞</button>
+              <button class="btn secondary" id="restBtn">I took a nap 😴</button>
+            </div>
+              <div style="margin-top:18px;">
+                <label for="moodMeter" style="font-weight:600; color:#7c8cff;">Mood meter:</label>
+                <input type="range" id="moodMeter" min="1" max="5" value="3" style="width:160px; vertical-align:middle;">
+                <span id="moodEmoji" style="font-size:22px; margin-left:8px;">😐</span>
+              </div>
+              <div id="confetti" style="position:fixed; left:0; top:0; width:100vw; height:100vh; pointer-events:none; z-index:9999; display:none;"></div>
+          </div>
+        </div>
+
+        <details>
+          <summary>When you’re ready, here’s a soft plan</summary>
+          <ul>
+                    <li>Step 1: Rant to your favorite baby (me) — bonus points for dramatic hand gestures.</li>
+                    <li>Step 2: Eat a snack (NOT TOO MUCH URE COUGHING!) angry calories don’t count because I says so.</li>
+                    <li>Step 3: I will give you a virtual hug 🤗 for now next time irl hug hehe</li>
+                    <li>Step 4: If all else fails, we can run away and join the circus or just sleep it fixes 99% of problems.</li>
+                    
+          </ul>
+        </details>
+
+        <p id="customNote" style="display:none"></p>
+      </div>
+
+      <div class="footer">
+        <span id="sign">— from MOODENG</span>
+        <a id="mailto" href="#" style="margin-left:auto; text-decoration:none; font-weight:600; color:#5a65d6">Text me when you’re ready →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === Customize these fields ===
+    const CONFIG = {
+    hisName: "DONKEY",      
+    fromName: "MOODENG",       
+    message: "You don’t have to carry this alone. I will always be proud of you, don't sad already ok",
+    contactLink: "https://t.me/deluluisthesolulu"       
+    };
+
+    // Apply personalization
+    const headline = document.getElementById('headline');
+    const subtitle = document.getElementById('subtitle');
+    const intro = document.getElementById('intro');
+    const customNote = document.getElementById('customNote');
+    const sign = document.getElementById('sign');
+    const mail = document.getElementById('mailto');
+
+    headline.textContent = `Hey ${CONFIG.hisName}, I’m on your side 💙`;
+    subtitle.textContent = `Bad day ≠ bad life. Breathe in Breath Out — we can handle the rest together.`;
+    customNote.textContent = CONFIG.message;
+    customNote.style.display = CONFIG.message ? 'block' : 'none';
+    sign.textContent = `— from ${CONFIG.fromName}, to you 🤍`;
+    mail.href = CONFIG.contactLink || '#';
+
+    // Floating hearts generator
+    const floaters = document.getElementById('floaters');
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.style.left = Math.random()*100 + '%';
+      h.style.bottom = '-20px';
+      h.style.opacity = 0.07 + Math.random()*0.2;
+      h.style.animationDuration = (6 + Math.random()*5) + 's';
+      floaters.appendChild(h);
+      setTimeout(()=>h.remove(), 11000);
+    }
+    for(let i=0;i<12;i++){ setTimeout(spawnHeart, i*600); }
+    setInterval(spawnHeart, 1200);
+
+    // Hug reveal & small acknowledgements
+    const hugBtn = document.getElementById('hugBtn');
+    const hugMsg = document.getElementById('hugMsg');
+    const affirm = document.getElementById('affirmList');
+
+      // Mood meter
+      const moodMeter = document.getElementById('moodMeter');
+      const moodEmoji = document.getElementById('moodEmoji');
+      if (moodMeter && moodEmoji) {
+        const emojis = ['😭','😕','😐','😊','🤣'];
+        moodMeter.addEventListener('input', function() {
+          moodEmoji.textContent = emojis[moodMeter.value-1];
+        });
+      }
+
+      // Confetti burst
+      function confettiBurst() {
+        const confetti = document.getElementById('confetti');
+        confetti.innerHTML = '';
+        confetti.style.display = 'block';
+  for(let i=0;i<500;i++){
+          const c = document.createElement('div');
+          c.style.position = 'absolute';
+          c.style.width = '10px';
+          c.style.height = '18px';
+          c.style.background = `hsl(${Math.random()*360},80%,70%)`;
+          c.style.left = Math.random()*100 + 'vw';
+          c.style.top = '0vh';
+          c.style.borderRadius = '4px';
+          c.style.transform = `rotate(${Math.random()*360}deg)`;
+          c.style.opacity = 0.7 + Math.random()*0.3;
+          c.style.transition = 'top 2.2s cubic-bezier(.5,1.8,.5,1), opacity 2.2s';
+          confetti.appendChild(c);
+          setTimeout(()=>{
+            c.style.top = (80+Math.random()*10) + 'vh';
+            c.style.opacity = 0;
+          }, 280);
+        }
+  setTimeout(()=>{confetti.style.display='none';}, 2600);
+      }
+
+    hugBtn.addEventListener('click', ()=>{
+      hugMsg.style.display = 'block';
+      burst();
+        confettiBurst();
+    });
+
+    ['waterBtn','ateBtn','restBtn'].forEach(id=>{
+      const el = document.getElementById(id);
+      el.addEventListener('click', ()=>{
+        const tag = document.createElement('span');
+        tag.className='pill';
+        const map={waterBtn:'Hydration: checked ✅', ateBtn:'Energy: checked ✅', restBtn:'Rest ✅'}
+        tag.textContent = map[id];
+        affirm.appendChild(tag);
+        burst(6);
+      })
+    })
+
+    // Simple burst of floating hearts near the button
+    function burst(n=10){
+      const rect = hugBtn.getBoundingClientRect();
+      for(let i=0;i<n;i++){
+        const h = document.createElement('div');
+        h.className='heart';
+        const x = (rect.left + rect.width/2) + (Math.random()*120 - 60);
+        h.style.left = `calc(${x}px - 7px)`;
+        h.style.bottom = '0px';
+        h.style.position='fixed';
+        h.style.opacity=.25;
+        h.style.animationDuration = (4 + Math.random()*2) + 's';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 7000);
+      }
+    }
+  </script>
+</body>
+</html>
